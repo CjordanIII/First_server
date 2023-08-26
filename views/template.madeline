@@ -4,4 +4,5 @@
 <body>
 <header>#message#</header>
 #content#
+#messageToUser#
 </body>
