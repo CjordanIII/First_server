@@ -32,12 +32,36 @@ app.get("/",(req,res)=>{
 app.get("/:number_of_bottles", (req, res) => {
   const bottles = parseInt(req.params.number_of_bottles); // Convert parameter to an integer
   const nextBottles = bottles - 1; // Calculate the next number of bottles
-
+if(bottles!=0){
   res.send(`
         ${bottles} Bottles of beer on the wall
         <a href="http://localhost:3000/${nextBottles}">Take one down, pass it around</a>
     `);
+}else{
+      res.send(`
+        ${bottles} Bottles of beer on the wall
+        <a href="http://localhost:3000/bugs/127">Take one down, pass it around</a>
+    `);
+}
+
 });
+
+app.get('/bugs/:number_of_errors',(req,res)=>{
+    const errors = parseInt(req.params.number_of_errors)
+    const nextError = errors - 1;
+
+    if (errors != 0) {
+      res.send(`
+        ${errors} bugs in the code
+        <a href="http://localhost:3000/bugs/${nextError}">Patch it around</a>
+    `);
+    } else {
+      res.send(`
+        ${errors} bugs in the code
+        <a href="http://localhost:3000/99">Patch it around</a>
+    `);
+    }
+})
 
 
 app.set('view engine',"madeline")
